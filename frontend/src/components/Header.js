@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./Header.module.css";
 import { FaBars } from "react-icons/fa";
 import NavList from "./NavList";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleMenuActions } from "../store/menuButtonSlice";
 
 const Header = (props) => {
-  const [toggleMenu, setToggleMenu] = useState(true);
+  const menuOpen = useSelector(state => state.menuButton.menuOpen);
+  const dispatch = useDispatch();
 
   const navLinks = [
     { title: "My Profile", url: "/my-profile" },
@@ -24,7 +27,7 @@ const Header = (props) => {
         <div className={classes.burgerDiv}>
           <button
             onClick={() => {
-              setToggleMenu(!toggleMenu);
+              dispatch(toggleMenuActions.toggleMenu());
             }}
             className={classes.burgerIcon}
           >
@@ -33,7 +36,7 @@ const Header = (props) => {
         </div>
       </div>
       <div>
-        {toggleMenu && (
+        {menuOpen && (
           <div className={classes.navList}>
             <NavList list={navLinks} />
           </div>

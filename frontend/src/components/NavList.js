@@ -8,7 +8,7 @@ const NavList = (props) => {
 
     return (
         <ul className={classes.navList}>
-            {props.list.map(link => <NavLink {...link}/>)}
+            {props.list.map(link => <NavLink {...link} key={link.title}/>)}
         </ul>
     )
 };
