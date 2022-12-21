@@ -1,0 +1,32 @@
+header{
+    background-color: rgb(0, 136, 255);
+    color: white;
+}
+.container1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.2rem;
+}
+.title{
+    font-size: 1.2rem;
+}
+.burgerDiv{
+    padding-right: 1rem;
+}
+.burgerIcon{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background: none;
+}
+.icon{
+    font-size: 1.5rem;
+    background-color: none;
+    color: white;
+}
+.navList{
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
+}
