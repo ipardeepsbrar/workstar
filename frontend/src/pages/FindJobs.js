@@ -4,8 +4,10 @@ import Header from "../components/Header";
 // import styles from './findJobs.module.css';
 import AvailableJobList from "../components/AvailableJobList";
 import EmptyElement from "../components/EmptyElement";
+import { useLocation } from "react-router-dom";
 
 const FindJobs = (props) => {
+  const location =  useLocation().pathname;
   const jobList = [
     {
       id: 1,
@@ -49,7 +51,7 @@ const FindJobs = (props) => {
       <Header />
       <EmptyElement/>
       {/* filter goes here */}
-      <AvailableJobList list={jobList} />
+      <AvailableJobList list={jobList} location={location} />
     </>
   );
 };

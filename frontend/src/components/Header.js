@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./Header.module.css";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import NavList from "./NavList";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMenuActions } from "../store/menuButtonSlice";
@@ -31,7 +31,7 @@ const Header = (props) => {
             }}
             className={classes.burgerIcon}
           >
-            <FaBars className={classes.icon} />
+            {menuOpen ? <FaTimes className={classes.icon}/> : <FaBars className={classes.icon} />}
           </button>
         </div>
       </div>

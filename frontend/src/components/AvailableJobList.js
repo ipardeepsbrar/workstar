@@ -16,7 +16,7 @@ const AvailableJobList = (props) => {
       <h2>Available Jobs</h2>
       <ul>
         {props.list.map((job) => (
-          <JobItem {...job} key={job.id} />
+          <JobItem {...job} key={job.id} location={props.location}/>
         ))}
       </ul>
     </section>

@@ -1,18 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import EmptyElement from "../components/EmptyElement";
 import Header from "../components/Header";
 import OpenPosition from "./OpenPosition";
+import OpenedJobList from "../components/OpenedJobList";
 
-// import styles from './provideJobs.module.css';
+import classes from './ProvideJobs.module.css';
 
 const ProvideJobs = (props) => {
+  const location = useLocation().pathname
+  // fetch opened positions from database
+
+  // dummy list of opened positions
+  const openedJobs = [
+    {
+      id: 1,
+      title: "Web designer",
+      description:
+        "This is a web development position using frontend technologies.",
+    },
+    {
+      id: 2,
+      title: "Graphic designer",
+      description:
+        "This is a graphic designer position using frontend technologies.",
+    }]
+
+
   return (
     <>
       <Header />
       <EmptyElement/>
-      <Link to='/open-position' element={<OpenPosition/>}/>
-      <OpendedJobList/>
+      <div className={classes.openPositionBtn}><button><Link className="removeBtnStyle" to='/open-position' element={<OpenPosition/>}>Open a position</Link></button></div>
+      <OpenedJobList list={openedJobs} location={location}/>
     </>
   );
 };

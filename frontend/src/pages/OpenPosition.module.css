@@ -1,0 +1,21 @@
+.openPositionForm{
+    padding: 1rem;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.openPositionForm input, textarea {
+    margin: 0 1rem;
+    width: 60%;
+}
+
+.openPositionForm div{
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+    width: 80%
+}
+
+.openPositionForm button{
+    margin-top: 2rem;
+}
