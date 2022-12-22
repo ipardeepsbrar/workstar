@@ -1,0 +1,28 @@
+.imageDiv{
+    height: 150px;
+    width: 150px;
+    background-color: rgb(223, 218, 218);
+    border-radius: 50%;
+    margin: 2rem auto;
+}
+
+.imageEditBtn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.detailsForm{
+    margin: 2rem auto;
+    text-align: center;
+    width: 80%;
+}
+
+.detailsForm div{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0
+}
+
+.detailsForm button{
+    margin: 2rem auto;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import EmptyElement from '../components/EmptyElement';
 import Header from '../components/Header';
+import PersonalDetails from '../components/PersonalDetails';
 
-// import styles from './myProfile.module.css';
+import classes from './MyProfile.module.css';
 
 
 const MyProfile = (props) => {
@@ -11,7 +12,12 @@ const MyProfile = (props) => {
         <>
           <Header />
           <EmptyElement/>
-          <h2>my profile page</h2>
+          <div className={classes.topButtons}>
+             <div><button>Personal Details</button></div>
+             <div><button>My Activity</button></div>
+          </div>
+          <PersonalDetails/>
+          {/* <MyActivity/> */}
         </>
       );
 };

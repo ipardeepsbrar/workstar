@@ -1,0 +1,20 @@
+.topButtons{
+    width: 100%;
+}
+
+.topButtons div{
+    width: 50%;
+    text-align: center;
+    display: inline-block
+}
+
+.topButtons button{
+    width: 100%;
+    display: inline-block;
+    border: none;
+    padding: 1rem 1rem
+}
+
+.topButtons button:hover, button:active{
+    background-color: aliceblue
+}
