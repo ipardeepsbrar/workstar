@@ -1,10 +1,9 @@
-import React from "react"
+import React from "react";
 import { Link } from "react-router-dom";
 
-import classes from './JobItem.module.css';
+import classes from "./JobItem.module.css";
 
 const JobItem = (props) => {
-
   return (
     <li className={classes.li}>
       <div className={classes.information}>
@@ -12,12 +11,21 @@ const JobItem = (props) => {
         <p>{props.description}</p>
       </div>
       <div className={classes.actions}>
-        {props.location === '/' && <><button>Save</button>
-        <button><Link className="removeBtnStyle" to={`/apply/${props.id}`}>Apply</Link></button></>}
-        {props.location === '/provide-jobs' && <button>Candidates</button>}
+        {props.openedBy === "me" ? (
+          <button>Candidates</button>
+        ) : (
+          <>
+            <button>Save</button>
+            <button>
+              <Link className="removeBtnStyle" to={`/apply/${props.id}`}>
+                Apply
+              </Link>
+            </button>
+          </>
+        )}
       </div>
     </li>
-  )
+  );
 };
 
 export default JobItem;
