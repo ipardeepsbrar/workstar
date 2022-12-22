@@ -32,6 +32,7 @@ const FindJobs = (props) => {
       title: "Graphic designer",
       description:
         "This is a graphic designer position using frontend technologies.",
+        openedBy: 'me'
     },
     {
       id: 5,
@@ -44,6 +45,7 @@ const FindJobs = (props) => {
       title: "Graphic designer",
       description:
         "This is a graphic designer position using frontend technologies.",
+        openedBy: 'me'
     },
   ];
   return (
