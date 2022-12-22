@@ -1,0 +1,13 @@
+.li{
+    margin: 0.6rem auto;
+    background-color: aliceblue;
+    padding: 1rem;
+}
+
+.information h3{
+    margin-top: 0;
+}
+
+.actions button{
+    margin: 0 0.5rem;
+}

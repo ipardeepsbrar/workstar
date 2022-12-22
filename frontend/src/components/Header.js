@@ -19,7 +19,7 @@ const Header = (props) => {
 ];
 
   return (
-    <header>
+    <header className={classes.header}>
       <div className={classes.container1}>
         <div className={classes.title}>
           <h2>Workstar</h2>
