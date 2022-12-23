@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import OpenPosition from "./OpenPosition";
 import OpenedJobList from "../components/OpenedJobList";
 
-import classes from './ProvideJobs.module.css';
+import classes from './css/ProvideJobs.module.css';
 
 const ProvideJobs = (props) => {
   const location = useLocation().pathname
@@ -18,14 +18,13 @@ const ProvideJobs = (props) => {
       title: "Web designer",
       description:
         "This is a web development position using frontend technologies.",
-        openedBy: 'me'
+      openedBy: 'me'
     },
     {
       id: 2,
       title: "Graphic designer",
       description:
         "This is a graphic designer position using frontend technologies.",
-        openedBy: 'me'
     }]
 
 

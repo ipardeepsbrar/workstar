@@ -1,7 +1,7 @@
 import React from "react";
 import EmptyElement from "../components/EmptyElement";
 import Header from "../components/Header";
-import classes from "./OpenPosition.module.css";
+import classes from "./css/OpenPosition.module.css";
 
 const OpenPosition = (props) => {
   const submitHandler = () => {};

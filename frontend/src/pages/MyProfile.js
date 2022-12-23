@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import MyActivity from '../components/MyActivity';
 import PersonalDetails from '../components/PersonalDetails';
 
-import classes from './MyProfile.module.css';
+import classes from './css/MyProfile.module.css';
 
 
 const MyProfile = (props) => {
