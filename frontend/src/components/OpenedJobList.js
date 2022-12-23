@@ -9,6 +9,7 @@ const OpenedJobList = (props) => {
       </section>
     );
   }
+  // testing
   return (
     <section>
       <h2>Opened positions by you:</h2>
