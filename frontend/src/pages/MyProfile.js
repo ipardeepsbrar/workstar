@@ -3,7 +3,7 @@ import EmptyElement from '../components/EmptyElement';
 import Header from '../components/Header';
 import PersonalDetails from '../components/PersonalDetails';
 
-import classes from './MyProfile.module.css';
+import classes from './css/MyProfile.module.css';
 
 
 const MyProfile = (props) => {

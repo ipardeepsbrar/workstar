@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import EmptyElement from "../components/EmptyElement";
 import Header from "../components/Header";
-import classes from './ApplyForm.module.css';
+import classes from './css/ApplyForm.module.css';
 
 const Apply = (props) => {
   const applyId = useParams().applyId;
