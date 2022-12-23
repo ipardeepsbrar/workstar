@@ -1,5 +1,6 @@
 import React from "react"
 import { useLocation } from "react-router-dom";
+import AppliedList from "./AppliedList";
 
 // import classes from './MyActivity.module.css';
 import OpenedJobList from "./OpenedJobList";
@@ -26,6 +27,7 @@ const MyActivity = (props) => {
   return (
     <section>
         <OpenedJobList list={openedJobs} location={location}/>
+        <AppliedList/>
     </section>
   )
 };

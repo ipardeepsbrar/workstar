@@ -11,9 +11,9 @@ const Header = (props) => {
   const dispatch = useDispatch();
 
   const navLinks = [
-    { title: "My Profile", url: "/my-profile" },
     { title: "Find Jobs", url: "/" },
     { title: "Provide Jobs", url: "/provide-jobs" },
+    { title: "My Profile", url: "/my-profile/details" },
     { title: "Log In / Register", url: "/auth-page" },
     { title: "About Us", url: "/about-us" }
 ];

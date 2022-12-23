@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ButtonLogic from "./ButtonLogic";
 
 import classes from "./JobItem.module.css";
 
@@ -11,18 +12,7 @@ const JobItem = (props) => {
         <p>{props.description}</p>
       </div>
       <div className={classes.actions}>
-        {props.openedBy === "me" ? (
-        <button><Link className="removeBtnStyle" to={`/candidates/${props.id}`}>Candidates</Link></button>
-        ) : (
-          <>
-            <button>Save</button>
-            <button>
-              <Link className="removeBtnStyle" to={`/apply/${props.id}`}>
-                Apply
-              </Link>
-            </button>
-          </>
-        )}
+        <ButtonLogic openedBy={props.openedBy} location={props.location} />
       </div>
     </li>
   );

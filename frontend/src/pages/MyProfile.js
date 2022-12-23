@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
 import EmptyElement from '../components/EmptyElement';
 import Header from '../components/Header';
 import MyActivity from '../components/MyActivity';
@@ -10,9 +11,13 @@ import classes from './css/MyProfile.module.css';
 const MyProfile = (props) => {
   const [details, setDetails] = useState(true);
 
-  const clickHandler = (e) => {
+  const detailsHandler = (e) => {
     e.preventDefault();
-    setDetails(!details)
+    setDetails(true)
+  }
+  const activityHandler = (e) => {
+    e.preventDefault();
+    setDetails(false)
   }
 
     return (
@@ -20,10 +25,13 @@ const MyProfile = (props) => {
           <Header />
           <EmptyElement/>
           <div className={classes.topButtons}>
-             <div className={details ? classes.active : classes.notactive} ><button onClick={clickHandler}>Personal Details</button></div>
-             <div className={details ? classes.notactive : classes.active}><button onClick={clickHandler}>My Activity</button></div>
+             <div className={details ? classes.active : classes.notactive} ><button onClick={detailsHandler}><Link to='details'>Personal Details</Link></button></div>
+             <div className={details ? classes.notactive : classes.active}><button onClick={activityHandler}><Link to='activity'>My Activity</Link></button></div>
           </div>
-          {details ? <PersonalDetails/> : <MyActivity/>}
+          <Routes>
+            <Route path='details' element={<PersonalDetails/>}/>
+            <Route path='activity' element={<MyActivity/>}/>
+          </Routes>
         </>
       );
 };
