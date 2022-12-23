@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import classes from './css/ApplyForm.module.css';
 
 const Apply = (props) => {
-  const applyId = useParams().applyId;
+  const jobId = useParams().jobId;
   // fetch data according to applyId
 
   const submitHandler = () => {};
@@ -17,7 +17,7 @@ const Apply = (props) => {
       <section className={classes.outerBox}>
         <form onSubmit={submitHandler}>
           <h3>
-            {/* title */}title id: {applyId}
+            {/* title */}title id: {jobId}
           </h3>
           <p>Description</p>
           <label htmlFor="resume">Upload Resume :</label>

@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
 import Apply from "./pages/Apply";
 import AuthPage from "./pages/AuthPage";
+import Candidates from "./pages/Candidates";
 import FindJobs from "./pages/FindJobs";
 import MyProfile from "./pages/MyProfile";
 import OpenPosition from "./pages/OpenPosition";
 import ProvideJobs from "./pages/ProvideJobs";
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +18,8 @@ function App() {
         <Route path="/auth-page" element={<AuthPage/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="/open-position" element={<OpenPosition/>}/>
-        <Route path="/apply/:applyId" element={<Apply/>}/>
+        <Route path="/apply/:jobId" element={<Apply/>}/>
+        <Route path="/candidates/:jobId" element={<Candidates/>}/>
       </Routes>
     </BrowserRouter>
   );

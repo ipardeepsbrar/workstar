@@ -12,7 +12,7 @@ const JobItem = (props) => {
       </div>
       <div className={classes.actions}>
         {props.openedBy === "me" ? (
-          <button>Candidates</button>
+        <button><Link className="removeBtnStyle" to={`/candidates/${props.id}`}>Candidates</Link></button>
         ) : (
           <>
             <button>Save</button>
