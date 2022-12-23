@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes, Navigate, NavLink } from 'react-router-dom';
 import EmptyElement from '../components/EmptyElement';
 import Header from '../components/Header';
 import MyActivity from '../components/MyActivity';
@@ -9,26 +9,17 @@ import classes from './css/MyProfile.module.css';
 
 
 const MyProfile = (props) => {
-  const [details, setDetails] = useState(true);
-
-  const detailsHandler = (e) => {
-    e.preventDefault();
-    setDetails(true)
-  }
-  const activityHandler = (e) => {
-    e.preventDefault();
-    setDetails(false)
-  }
 
     return (
         <>
           <Header />
           <EmptyElement/>
           <div className={classes.topButtons}>
-             <div className={details ? classes.active : classes.notactive} ><button onClick={detailsHandler}><Link to='details'>Personal Details</Link></button></div>
-             <div className={details ? classes.notactive : classes.active}><button onClick={activityHandler}><Link to='activity'>My Activity</Link></button></div>
+             <div ><NavLink className={navData => navData.isActive ? classes.active: classes.notactive } to='details'>Personal Details</NavLink></div>
+             <div ><NavLink className={navData => navData.isActive ? classes.active: classes.notactive} to='activity'>My Activity</NavLink></div>
           </div>
           <Routes>
+            <Route path='/' element={<Navigate to='details'/>}/>
             <Route path='details' element={<PersonalDetails/>}/>
             <Route path='activity' element={<MyActivity/>}/>
           </Routes>

@@ -13,7 +13,7 @@ const Header = (props) => {
   const navLinks = [
     { title: "Find Jobs", url: "/" },
     { title: "Provide Jobs", url: "/provide-jobs" },
-    { title: "My Profile", url: "/my-profile/details" },
+    { title: "My Profile", url: "/my-profile" },
     { title: "Log In / Register", url: "/auth-page" },
     { title: "About Us", url: "/about-us" }
 ];

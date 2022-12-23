@@ -5,24 +5,17 @@
 
 .topButtons div{
     width: 50%;
+    /* height: 2rem; */
     text-align: center;
-    display: inline-block
-}
-
-.topButtons button{
-    width: 100%;
     display: inline-block;
-    border: none;
-    padding: 1rem 1rem;
-    background-color: transparent;
-}
-
-.topButtons button:hover{
-    /* background-color: aliceblue */
 }
 
 .active{
-    background-color: rgb(184, 218, 248)
+    display: inline-block;
+    background-color: rgb(184, 218, 248);
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0;
 }
 .notactive{
     background-color: transparent;
