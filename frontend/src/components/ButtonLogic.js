@@ -22,7 +22,7 @@ const ButtonLogic = (props) => {
           <>
             <button>Save</button>
             <button>
-              <Link className="removeBtnStyle" to={`/apply/${props.id}`}>
+              <Link className="removeBtnStyle" to={`/apply/${props.jobId}`}>
                 Apply
               </Link>
             </button>

@@ -12,7 +12,7 @@ const JobItem = (props) => {
         <p>{props.description}</p>
       </div>
       <div className={classes.actions}>
-        <ButtonLogic openedBy={props.openedBy} location={props.location} />
+        <ButtonLogic openedBy={props.openedBy} jobId={props.id} location={props.location} />
       </div>
     </li>
   );

@@ -7,7 +7,21 @@ const app = express();
 app.use(express.json());
 
 
-const port = process.env.PORT || 5000
+// get all jobs
+// get('/')
+
+// all jobs by a user
+// get('/provide-jobs/:userId)
+
+// open a position
+// post('/provide-jobs/open-position/:userId)
+
+//apply for a job
+// post('/apply/:jobId)
+
+
+
+const port = process.env.PORT || 6000
 const connect = async () => {
     try {
         mongoose.set('strictQuery', false);
