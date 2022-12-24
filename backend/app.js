@@ -7,17 +7,28 @@ const app = express();
 app.use(express.json());
 
 
-// get all jobs
+// welcome page
 // get('/')
 
-// all jobs by a user
+// all jobs page
+// get('/all-jobs')
+
+//apply for a job
+// post('/all-jobs/apply/:jobId)
+
+//save a job
+// post('/all-jobs/save/:jobId)
+
+// opened positions by a user
 // get('/provide-jobs/:userId)
 
 // open a position
 // post('/provide-jobs/open-position/:userId)
 
-//apply for a job
-// post('/apply/:jobId)
+// my profile page
+// get('/my-profile/details')
+// get('/my-profile/activity')
+
 
 
 
