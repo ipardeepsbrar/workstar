@@ -6,33 +6,13 @@ const app = express();
 
 app.use(express.json());
 
-// welcome page
-// get('/')
-
-// all jobs page
-// get('/all-jobs')
-
-//apply for a job
-// post('/all-jobs/apply/:jobId)
-
-//save a job
-// post('/all-jobs/save/:jobId)
-
-// opened positions by a user
-// get('/provide-jobs/:userId)
-
-// open a position
-// post('/provide-jobs/open-position/:userId)
-
-// my profile page
-// get('/my-profile/details')
-// get('/my-profile/activity')
-
 const allJobsRoutes = require("./routers/all-jobs");
 const providerRoutes = require("./routers/provide-jobs");
+const profileRoutes = require('./routers/profile-routes');
 
 app.use("/api/all-jobs", allJobsRoutes);
 app.use("/api/provide-jobs", providerRoutes);
+app.use('/api/my-profile', profileRoutes)
 
 
 // resource not found
