@@ -8,7 +8,7 @@ const getAllJobs = (req, res, next) => {
     throw new MyCustomError("no jobs available right now", 501);
   }
 
-  res.status(200).json({ dummyJobs });
+  res.status(200).json('get all jobs page');
 };
 
 const saveJob = (req, res, next) => {
