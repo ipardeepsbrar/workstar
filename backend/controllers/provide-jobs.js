@@ -7,13 +7,14 @@ const allOpenedPositions = (req, res, next) => {
     throw new MyCustomError("no jobs available right now", 500);
   }
 
-  res.status(200).json({ dummyJobs });
+//   res.status(200).json({ dummyJobs });
+  res.status(200).json('all opened positions by you page');
 };
 
 const getCandidates = (req, res, next) => {
   // get candidates for a job from database
   const candidates = ['dummy candidates'];
-  
+
   if (!candidates) {
     res.status(200).json({ message: "No candidates for this job yet" });
   }

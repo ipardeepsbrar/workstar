@@ -1,9 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-// yet to create controllers for these routes
+const { getActivity, getDetails } = require("../controllers/profile");
 
-router.route('/details/:userId').get()
-router.route('/activity/:userId').get()
+router.route("/details/:userId").get(getDetails);
+
+router.route("/activity/:userId").get(getActivity);
 
 module.exports = router;
