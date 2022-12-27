@@ -8,7 +8,7 @@ const allOpenedPositions = (req, res, next) => {
   }
 
 //   res.status(200).json({ dummyJobs });
-  res.status(200).json('all opened positions by you page');
+  res.status(200).json({msg:'all opened positions by you page', userName: req.user.name});
 };
 
 const getCandidates = (req, res, next) => {

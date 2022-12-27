@@ -4,7 +4,8 @@ const router = express.Router();
 const providerController = require("../controllers/provide-jobs");
 
 router
-  .route("/opened-positions/:userId")
+  // .route("/opened-positions/:userId")
+  .route("/")
   .get(providerController.allOpenedPositions);
 
 router
