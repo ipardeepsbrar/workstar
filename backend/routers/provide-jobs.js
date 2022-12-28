@@ -4,14 +4,13 @@ const router = express.Router();
 const providerController = require("../controllers/provide-jobs");
 
 router
-  // .route("/opened-positions/:userId")
-  .route("/")
+  .route("/opened-positions")
   .get(providerController.allOpenedPositions);
 
 router
   .route("/opened-positions/candidates/:userId")
   .get(providerController.getCandidates);
 
-router.route("/open-position/:userId").post(providerController.openPosition);
+router.route("/opened-positions/open-position").post(providerController.openPosition);
 
 module.exports = router;

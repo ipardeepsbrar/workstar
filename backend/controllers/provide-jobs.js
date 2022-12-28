@@ -1,15 +1,15 @@
 const MyCustomError = require("../models/CustomError");
+const Jobs = require('../models/jobs');
 
-const allOpenedPositions = (req, res, next) => {
-  const dummyJobs = [{ job: "IT guy", salary: "20k" }];
-
-  if (!dummyJobs) {
+const allOpenedPositions = async (req, res, next) => {
+  const jobs = await Jobs.find({openedBy: req.user.userId})
+  
+  if (jobs.length < 1) {
     throw new MyCustomError("no jobs available right now", 500);
   }
-
-//   res.status(200).json({ dummyJobs });
-  res.status(200).json({msg:'all opened positions by you page', userName: req.user.name});
+  res.status(200).json(jobs);
 };
+
 
 const getCandidates = (req, res, next) => {
   // get candidates for a job from database
@@ -21,9 +21,15 @@ const getCandidates = (req, res, next) => {
   res.status(200).json({ candidates });
 };
 
-const openPosition = (req, res, next) => {
-  // create and save job in database
-  // create a reference to job in user model
+const openPosition = async (req, res, next) => {
+  const {title, description} = req.body;
+  if (!title || !description){
+    throw new MyCustomError('Please provide all the values', 400);
+  }
+  const job = {title, description, openedBy: req.user.userId}
+
+  const returnedJob = await Jobs.create(job);
+  res.status(201).json({msg:`A ${returnedJob.title}'s position has been opened by you.`})
 };
 
 module.exports = { allOpenedPositions, getCandidates, openPosition };

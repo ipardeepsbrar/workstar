@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema({
     email : {type: String, required: true},
     password : {type: String, required: true},
     telephone : {type: Number},
-    address : {type: String}
+    address : {type: String},
+    appliedTo: [{type: mongoose.Types.ObjectId, ref: 'Jobs'}],
+    savedJobs: [{type: mongoose.Types.ObjectId, ref: 'Jobs'}]
 });
 
 UserSchema.pre('save', async function(){

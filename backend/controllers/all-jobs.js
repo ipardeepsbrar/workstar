@@ -1,22 +1,21 @@
 const MyCustomError = require("../models/CustomError");
+const Jobs = require("../models/jobs");
+const Users = require('../models/users')
 
-const getAllJobs = (req, res, next) => {
-  const dummyJobs = [{ job: "IT guy", salary: "20k", id: 1 }];
-  // const dummyJobs = [];
-
-  if (dummyJobs.length < 1) {
-    throw new MyCustomError("no jobs available right now", 501);
-  }
-
-  res.status(200).json('get all jobs page');
+const getAllJobs = async (req, res, next) => {
+  const allJobs = await Jobs.find();
+  res.status(200).json(allJobs);
 };
 
-const saveJob = (req, res, next) => {
+const saveJob = async (req, res, next) => {
   const jobId = req.body.jobId;
-
+  let user =await Users.findById(req.user.userId)
+  user = await user.savedJobs.push(jobId)
+  // console.log('hi');
   // save job to database
+  res.status(200).json(user.savedJobs)
 };
-const applyJob = (req, res, next) => {
+const applyJob = async (req, res, next) => {
   const jobId = req.body.jobId;
   // get user details from user id and experience from body
   // collect resume from user
