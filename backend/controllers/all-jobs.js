@@ -8,13 +8,14 @@ const getAllJobs = async (req, res, next) => {
 };
 
 const saveJob = async (req, res, next) => {
-  const jobId = req.body.jobId;
-  let user =await Users.findById(req.user.userId)
-  user = await user.savedJobs.push(jobId)
-  // console.log('hi');
-  // save job to database
-  res.status(200).json(user.savedJobs)
+  const jobId = req.params.jobId;
+  const user =await Users.findById(req.user.userId)
+  user.savedJobs.push(jobId);
+  await user.save()
+  res.status(200).json(user)
 };
+
+
 const applyJob = async (req, res, next) => {
   const jobId = req.body.jobId;
   // get user details from user id and experience from body
