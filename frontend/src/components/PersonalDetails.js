@@ -21,43 +21,46 @@ const PersonalDetails = (props) => {
 
   return (
     <section>
-      <div className={classes.imageDiv}>
-        <img src="" alt="" />
-      </div>
-      {edit && (
-        <div className={classes.imageEditBtn}>
-          <input type="file" name="image" />
-        </div>
-      )}
-
       <form className={classes.detailsForm} onSubmit={submitHandler}>
-        <div>
+        <div className={classes.imageBox}>
+          <div className={classes.imageDiv}>
+            <img src="" alt="" />
+          </div>
+        </div>
+        {edit && (
+          <div className={classes.imageEditBtn}>
+            <input type="file" name="image" />
+          </div>
+        )}
+
+        <div className={classes.inputDiv}>
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" />
+          <input type="text" id="name" name="name" disabled={edit ? false : true} />
         </div>
 
-        <div>
+        <div className={classes.inputDiv}>
           <label htmlFor="email">Email:</label>
-          <input type="text" id="email" name="email" />
+          <input type="text" id="email" name="email" disabled={edit ? false : true}/>
         </div>
 
-        <div>
+        <div className={classes.inputDiv}>
           <label htmlFor="pswd">Password:</label>
-          <input type="text" id="pswd" name="password" />
+          <input type="password" id="pswd" name="password" disabled={edit ? false : true}/>
         </div>
 
-        <div>
+        <div className={classes.inputDiv}>
           <label htmlFor="tel">Telephone:</label>
           <input
             type="tel"
             id="tel"
             name="phone"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            disabled={edit ? false : true}
           />
         </div>
-        <div>
+        <div className={classes.inputDiv}>
           <label htmlFor="address">Address:</label>
-          <input type="text" id="address" name="address" />
+          <input type="text" id="address" name="address" disabled={edit ? false : true}/>
         </div>
         {edit ? (
           <button type="submit">Save</button>

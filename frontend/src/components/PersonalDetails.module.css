@@ -6,6 +6,12 @@
     margin: 2rem auto;
 }
 
+.imageBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .imageEditBtn{
     display: flex;
     justify-content: flex-end;
@@ -17,7 +23,7 @@
     width: 80%;
 }
 
-.detailsForm div{
+.detailsForm .inputDiv{
     display: flex;
     justify-content: space-between;
     margin: 1rem 0
