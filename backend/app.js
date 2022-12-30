@@ -2,6 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 require('express-async-errors');
+// security packages
+const helmet = require('helmet');
+const cors = require('cors');
+const xss = require('xss');
+const rateLimiter = require('express-rate-limit');
+
 
 const allJobsRoutes = require("./routers/all-jobs");
 const providerRoutes = require("./routers/provide-jobs");
@@ -12,14 +18,16 @@ const authMiddleware = require('./middlewares/auth')
 
 const app = express();
 
+app.use(rateLimiter({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+}))
 app.use(express.json());
-
-// CORS Error
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-// })
+app.use(helmet())
+app.use(cors())
+app.use(xss())
 
 app.use("/api/all-jobs", allJobsRoutes);
 app.use("/api/provide-jobs",authMiddleware, providerRoutes);
