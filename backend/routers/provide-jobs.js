@@ -8,9 +8,9 @@ router
   .get(providerController.allOpenedPositions);
 
 router
-  .route("/opened-positions/candidates/:userId")
+  .route("/opened-positions/candidates")
   .get(providerController.getCandidates);
 
-router.route("/opened-positions/open-position").post(providerController.openPosition);
+router.route("/opened-positions/open-position").put(providerController.openPosition);
 
 module.exports = router;
