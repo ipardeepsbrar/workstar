@@ -1,37 +1,27 @@
 import React, { useState } from "react";
+import ImagePicker from "./ImagePicker";
 
 import classes from "./PersonalDetails.module.css";
 
 const PersonalDetails = (props) => {
   const [edit, setEdit] = useState(false);
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     // some code to save details onto database
-
     setEdit(false);
   };
 
   const editHandler = (e) => {
     e.preventDefault();
-
     // some code to enable editing
-
     setEdit(true);
   };
 
   return (
     <section>
       <form className={classes.detailsForm} onSubmit={submitHandler}>
-        <div className={classes.imageBox}>
-          <div className={classes.imageDiv}>
-            <img src="" alt="" />
-          </div>
-        </div>
-        {edit && (
-          <div className={classes.imageEditBtn}>
-            <input type="file" name="image" />
-          </div>
-        )}
+        <ImagePicker edit={edit}/>
 
         <div className={classes.inputDiv}>
           <label htmlFor="name">Name:</label>

@@ -1,22 +1,3 @@
-.imageDiv{
-    height: 150px;
-    width: 150px;
-    background-color: rgb(223, 218, 218);
-    border-radius: 50%;
-    margin: 2rem auto;
-}
-
-.imageBox{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.imageEditBtn{
-    display: flex;
-    justify-content: flex-end;
-}
-
 .detailsForm{
     margin: 2rem auto;
     text-align: center;
