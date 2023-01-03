@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<FindJobs/>}/>
         <Route path="/provide-jobs/*" element={<ProvideJobs/>}/>
         <Route path="/my-profile/*" element={<MyProfile/>}/>
-        <Route path="/auth-page" element={<AuthPage/>}/>
+        <Route path="/authenticate" element={<AuthPage/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="/apply/:jobId" element={<Apply/>}/>
         <Route path="/candidates/:jobId" element={<Candidates/>}/>

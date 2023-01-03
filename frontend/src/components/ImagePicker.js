@@ -4,6 +4,7 @@ import classes from "./ImagePicker.module.css";
 
 const ImagePicker = (props) => {
   const [pickedFile, setPickedFile] = useState();
+  // const [previewImage, setPreviewImage] = useState();
 
   const pickedImageHandler = (event) => {
     let file;
@@ -22,7 +23,6 @@ const ImagePicker = (props) => {
       <div className={classes.imageBox}>
         <div className={classes.imageDiv}>
         {pickedFile && <img src={pickedFile} alt="Preview" />}
-        {/* {!pickedFile && <p>Please choose an image</p>} */}
         </div>
       </div>
       {props.edit && (

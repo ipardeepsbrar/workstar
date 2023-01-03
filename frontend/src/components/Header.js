@@ -14,7 +14,7 @@ const Header = (props) => {
     { title: "Find Jobs", url: "/" },
     { title: "Provide Jobs", url: "/provide-jobs" },
     { title: "My Profile", url: "/my-profile" },
-    { title: "Log In / Register", url: "/auth-page" },
+    { title: "Log In / Register", url: "/authenticate" },
     { title: "About Us", url: "/about-us" }
 ];
 
