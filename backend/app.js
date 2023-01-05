@@ -18,16 +18,17 @@ const authMiddleware = require('./middlewares/auth')
 
 const app = express();
 
-app.use(rateLimiter({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-}))
+// app.use(rateLimiter({
+// 	windowMs: 15 * 60 * 1000, // 15 minutes
+// 	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+// 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+// 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+// }))
+
 app.use(express.json());
-app.use(helmet())
-app.use(cors())
-app.use(xss())
+app.use(helmet());
+app.use(cors());
+// app.use(xss())
 
 app.use("/api/all-jobs", allJobsRoutes);
 app.use("/api/provide-jobs",authMiddleware, providerRoutes);
@@ -35,14 +36,18 @@ app.use("/api/my-profile",authMiddleware, profileRoutes);
 app.use("/api/auth", authRoutes);
 
 // resource not found
-app.use((req, res, next) => {
+app.use('*',(req, res, next) => {
   res.status(404).json({ message: "resource does not exist" });
 });
 
 // custom error handler
 app.use((err, req, res, next) => {
+  if(res.headerSent){
+    console.log('in custom error');
+    return next(err)
+  }
   if(err instanceof MyCustomError){
-    res.status(err.code).json({ message: err.message });
+    return res.status(err.code).json({ message: err.message });
   }
   // a simple custom message
   // res.status(500).json({ message: 'Something went wrong, please try again later' });
@@ -51,7 +56,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ msg: err });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 const connect = async () => {
   try {
     mongoose.set("strictQuery", false);
