@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AlertDialog from "./components/shared/Dialog";
 import AboutUs from "./pages/AboutUs";
 import Apply from "./pages/Apply";
 import AuthPage from "./pages/AuthPage";
@@ -8,13 +10,15 @@ import MyProfile from "./pages/MyProfile";
 import ProvideJobs from "./pages/ProvideJobs";
 
 function App() {
+  const errorMessage = useSelector(state => state.error.errorMessage)
   return (
     <BrowserRouter>
+      <AlertDialog/>
       <Routes>
         <Route path="/" element={<FindJobs/>}/>
         <Route path="/provide-jobs/*" element={<ProvideJobs/>}/>
         <Route path="/my-profile/*" element={<MyProfile/>}/>
-        <Route path="/authenticate" element={<AuthPage/>}/>
+        <Route path="/authenticate/*" element={<AuthPage/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="/apply/:jobId" element={<Apply/>}/>
         <Route path="/candidates/:jobId" element={<Candidates/>}/>

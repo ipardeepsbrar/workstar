@@ -1,0 +1,29 @@
+.detailsForm{
+    margin: 2rem auto;
+    text-align: center;
+    width: 80%;
+}
+
+.detailsForm .inputDiv{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0
+}
+
+.detailsForm button{
+    margin: 2rem auto;
+}
+
+.title{
+    text-align: center
+}
+
+.invalidFeedback{
+    color: red;
+    padding: 0.2rem 0;
+    display: block;
+}
+.btns{
+    display: block;
+    margin: 0rem;
+}
