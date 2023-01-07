@@ -48,9 +48,7 @@ const RegisterPage = (props) => {
           { "Content-Type": "application/json" },
           body
         );
-        console.log(data);
         actions.resetForm();
-        actions.setSubmitting(false);
         dispatch(authActions.logIn());
         navigate("/");
       }}

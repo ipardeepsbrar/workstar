@@ -10,7 +10,7 @@ import MyProfile from "./pages/MyProfile";
 import ProvideJobs from "./pages/ProvideJobs";
 
 function App() {
-  const errorMessage = useSelector(state => state.error.errorMessage)
+  const alertMessage = useSelector(state => state.alert.alertMessage)
   return (
     <BrowserRouter>
       <AlertDialog/>
