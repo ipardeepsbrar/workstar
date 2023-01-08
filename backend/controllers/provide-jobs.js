@@ -3,10 +3,6 @@ const Jobs = require('../models/jobs');
 
 const allOpenedPositions = async (req, res, next) => {
   const jobs = await Jobs.find({openedBy: req.user.userId})
-  
-  if (jobs.length < 1) {
-    next(new MyCustomError("no jobs available right now", 500));
-  }
   res.status(200).json(jobs);
 };
 
@@ -24,7 +20,7 @@ const getCandidates = (req, res, next) => {
 const openPosition = async (req, res, next) => {
   const {title, description} = req.body;
   if (!title || !description){
-    next(new MyCustomError('Please provide all the values', 400));
+    return next(new MyCustomError('Please provide all the values', 400));
   }
   const job = {title, description, openedBy: req.user.userId}
 

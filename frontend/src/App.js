@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AlertDialog from "./components/shared/Dialog";
 import AboutUs from "./pages/AboutUs";
@@ -8,9 +9,22 @@ import Candidates from "./pages/Candidates";
 import FindJobs from "./pages/FindJobs";
 import MyProfile from "./pages/MyProfile";
 import ProvideJobs from "./pages/ProvideJobs";
+import { authActions } from "./store/authSlice";
+
 
 function App() {
   const alertMessage = useSelector(state => state.alert.alertMessage)
+  // const token = useSelector(state => state.auth.token)
+  const dispatch = useDispatch();
+  
+  
+  useEffect(()=>{
+    const storedToken = localStorage.getItem('token');
+    if(storedToken){
+      dispatch(authActions.setToken(storedToken))
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <AlertDialog/>

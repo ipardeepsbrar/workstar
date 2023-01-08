@@ -49,7 +49,7 @@ const RegisterPage = (props) => {
           body
         );
         actions.resetForm();
-        dispatch(authActions.logIn());
+        dispatch(authActions.register({token: data.token}));
         navigate("/");
       }}
     >

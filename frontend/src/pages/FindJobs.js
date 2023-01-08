@@ -1,59 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 
 // import styles from './findJobs.module.css';
 import AvailableJobList from "../components/AvailableJobList";
 import EmptyElement from "../components/EmptyElement";
 import { useLocation } from "react-router-dom";
+import useBackendRequester from "../components/shared/useBackendRequester";
+import LoadingCircle from '../components/shared/LoadingCircle'
 
 const FindJobs = (props) => {
   const location =  useLocation().pathname;
-  const jobList = [
-    {
-      id: 1,
-      title: "Web designer",
-      description:
-        "This is a web development position using frontend technologies.",
-    },
-    {
-      id: 2,
-      title: "Graphic designer",
-      description:
-        "This is a graphic designer position using frontend technologies.",
-    },
-    {
-      id: 3,
-      title: "Web designer",
-      description:
-        "This is a web development position using frontend technologies.",
-    },
-    {
-      id: 4,
-      title: "Graphic designer",
-      description:
-        "This is a graphic designer position using frontend technologies.",
-        openedBy: 'me'
-    },
-    {
-      id: 5,
-      title: "Web designer",
-      description:
-        "This is a web development position using frontend technologies.",
-    },
-    {
-      id: 6,
-      title: "Graphic designer",
-      description:
-        "This is a graphic designer position using frontend technologies.",
-        openedBy: 'me'
-    },
-  ];
+  const [list, setList] = useState([]);
+  const {sendRequest, loading} = useBackendRequester();
+  
+
+  useEffect(()=>{
+    async function requestList() {
+      const list = await sendRequest('http://localhost:8000/api/all-jobs/')
+      setList(list);
+    }
+    requestList();
+  },[])
+
   return (
     <>
       <Header />
       <EmptyElement/>
       {/* filter goes here */}
-      <AvailableJobList list={jobList} location={location} />
+      {loading && <LoadingCircle/>}
+      <AvailableJobList list={list} location={location} />
     </>
   );
 };

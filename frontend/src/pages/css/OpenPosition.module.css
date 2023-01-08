@@ -19,3 +19,8 @@
 .openPositionForm button{
     margin-top: 2rem;
 }
+.invalidFeedback{
+    color: red;
+    padding: 0.2rem 0;
+    display: block;
+}
