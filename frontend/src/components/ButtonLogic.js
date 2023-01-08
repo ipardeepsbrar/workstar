@@ -1,9 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { alertActions } from "../store/alertSlice";
 
 const ButtonLogic = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const token = useSelector((state) => state.auth.token);
   const location = props.location;
   let buttons;
+
+  const btnHandler = (e) => {
+    if (!token) {
+      e.preventDefault();
+      dispatch(alertActions.setAlert("Please Log-in to continue..."));
+      return navigate("/authenticate/login");
+    }
+    // navigate('open-position')
+  }
 
   if (location) {
     if (location.startsWith("/candidates")) {
@@ -20,8 +35,8 @@ const ButtonLogic = (props) => {
       } else {
         buttons = (
           <>
-            <button>Save</button>
-            <button>
+            <button onClick={btnHandler}>Save</button>
+            <button onClick={btnHandler}>
               <Link className="removeBtnStyle" to={`/apply/${props.jobId}`}>
                 Apply
               </Link>

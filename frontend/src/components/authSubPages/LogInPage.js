@@ -8,12 +8,12 @@ import useBackendRequester from "../shared/useBackendRequester";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { errorActions } from "../../store/errorSlice";
+import { alertActions } from "../../store/alertSlice";
 
 const LogInPage = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {sendRequest} = useBackendRequester();
+  const { sendRequest } = useBackendRequester();
 
   return (
     <Formik
@@ -38,15 +38,15 @@ const LogInPage = (props) => {
             { "Content-Type": "application/json" },
             body
           );
-        //   console.log(data);
-        //   actions.resetForm();
-        //   dispatch(authActions.logIn());
-        //   navigate("/");
+          //   console.log(data);
+          actions.resetForm();
+          dispatch(authActions.logIn({token: data.token}));
+          navigate("/");
         } catch (error) {
-            console.log('in login catch');
-          dispatch(errorActions.setError(error.message));
-        //   actions.resetForm();
-        //   actions.setSubmitting(false);
+          console.log("in login catch");
+          dispatch(alertActions.setAlert(error.message));
+          //   actions.resetForm();
+          //   actions.setSubmitting(false);
         }
       }}
     >
