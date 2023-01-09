@@ -34,25 +34,7 @@ const ProvideJobs = (props) => {
         }
         requestList();
       }
-  },[token])
-  // fetch opened positions from database
-
-  // dummy list of opened positions
-  // const openedJobs = [
-  //   {
-  //     id: 1,
-  //     title: "Web designer",
-  //     description:
-  //       "This is a web development position using frontend technologies.",
-  //     openedBy: "me",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Graphic designer",
-  //     description:
-  //       "This is a graphic designer position using frontend technologies.",
-  //   },
-  // ];
+  },[token, sendRequest])
 
   const currentPage = (
     <>

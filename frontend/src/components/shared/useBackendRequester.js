@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { alertActions } from "../../store/alertSlice";
 
@@ -6,18 +6,29 @@ const useBackendRequester = (props) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const sendRequest = async (
+  // const activeHttpRequests = useRef([])
+
+  // useEffect(()=>{
+  //   return ()=>{
+  //     activeHttpRequests.current.forEach(req => req.abort());
+  //   }
+  // },[])
+
+  const sendRequest = useCallback(async (
     url,
     method = "GET",
     headers = {},
     body = null
   ) => {
+        // const currentReqController = new AbortController()
+        // activeHttpRequests.current.push(currentReqController);
         setLoading(true);
     try {
       const response = await fetch(url, {
         method,
         headers,
-        body
+        body,
+        // signal: currentReqController.signal
       });
       const data = await response.json();
       if (!response.ok) {
@@ -30,7 +41,7 @@ const useBackendRequester = (props) => {
       dispatch(alertActions.setAlert(error.message));
       throw error;
     }
-  };
+  },[dispatch]);
 
   return { sendRequest, loading };
 };

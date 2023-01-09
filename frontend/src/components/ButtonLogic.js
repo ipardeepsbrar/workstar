@@ -11,20 +11,57 @@ const ButtonLogic = (props) => {
   const location = props.location;
   let buttons;
 
-  const btnHandler = (e) => {
+  const applyHandler = (e) => {
     if (!token) {
       e.preventDefault();
       dispatch(alertActions.setAlert("Please Log-in to continue..."));
       return navigate("/authenticate/login");
     }
-    // navigate('open-position')
+    navigate(`/apply/${props.jobId}`)
   }
+  const saveHandler = (e) => {
+    // if (!token) {
+    //   e.preventDefault();
+    //   dispatch(alertActions.setAlert("Please Log-in to continue..."));
+    //   return navigate("/authenticate/login");
+    // }
+    // navigate(`/apply/${props.jobId}`)
+  }
+
+  // if (location) {
+  //   if (location.startsWith("/candidates")) {
+  //     buttons = null;
+  //   } else {
+  //     if (location.startsWith("/provide-jobs" || "/my-profile")) {
+  //       buttons = (
+  //         <button>
+  //           <Link className="removeBtnStyle" to={`/candidates/${props.id}`}>
+  //             Candidates
+  //           </Link>
+  //         </button>
+  //       );
+  //     } else {
+  //       buttons = (
+  //         <>
+  //           <button onClick={saveHandler}>Save</button>
+  //           <button onClick={applyHandler}>
+  //             {/* <Link className="removeBtnStyle" to={`/apply/${props.jobId}`}> */}
+  //               Apply
+  //             {/* </Link> */}
+  //           </button>
+  //         </>
+  //       );
+  //     }
+  //   }
+  // } else {
+  //   buttons = null;
+  // }
 
   if (location) {
     if (location.startsWith("/candidates")) {
       buttons = null;
-    } else {
-      if (props.openedBy === "me") {
+    } 
+    else if (location.startsWith("/provide-jobs") || location.startsWith("/my-profile")) {
         buttons = (
           <button>
             <Link className="removeBtnStyle" to={`/candidates/${props.id}`}>
@@ -32,22 +69,23 @@ const ButtonLogic = (props) => {
             </Link>
           </button>
         );
-      } else {
+      } 
+    else {
         buttons = (
           <>
-            <button onClick={btnHandler}>Save</button>
-            <button onClick={btnHandler}>
-              <Link className="removeBtnStyle" to={`/apply/${props.jobId}`}>
+            <button onClick={saveHandler}>Save</button>
+            <button onClick={applyHandler}>
+              {/* <Link className="removeBtnStyle" to={`/apply/${props.jobId}`}> */}
                 Apply
-              </Link>
+              {/* </Link> */}
             </button>
           </>
         );
       }
     }
-  } else {
-    buttons = null;
-  }
+  // } else {
+  //   buttons = null;
+  // }
 
   return buttons;
 };

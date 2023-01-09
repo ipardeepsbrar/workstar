@@ -2,8 +2,16 @@ const MyCustomError = require("../models/CustomError");
 const Jobs = require("../models/jobs");
 const Users = require('../models/users')
 
+// to get all jobs out there
 const getAllJobs = async (req, res, next) => {
   const allJobs = await Jobs.find();
+  res.status(200).json(allJobs);
+};
+
+// to get all jobs out there except my own
+const getAllOtherJobs = async (req, res, next) => {
+  console.log('run');
+  const allJobs = await Jobs.find().ne('openedBy' ,req.user.userId)
   res.status(200).json(allJobs);
 };
 
@@ -24,4 +32,4 @@ const applyJob = async (req, res, next) => {
   res.status(200).json({ message: "dummy message, job applied" });
 };
 
-module.exports = { getAllJobs, saveJob, applyJob };
+module.exports = { getAllJobs, getAllOtherJobs, saveJob, applyJob };
