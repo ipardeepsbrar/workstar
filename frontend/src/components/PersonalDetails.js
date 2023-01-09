@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Field, Formik } from "formik";
 import * as Yup from "yup";
 import ImagePicker from "./ImagePicker";
@@ -8,13 +8,27 @@ import classes from "./PersonalDetails.module.css";
 import useBackendRequester from "./shared/useBackendRequester";
 import { authActions } from "../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {sendRequest} from './shared/useBackendRequester';
 
 const PersonalDetails = (props) => {
   const [edit, setEdit] = useState(false);
   const { sendRequest } = useBackendRequester();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+  const [details, setDetails] = useState({})
+
+  useEffect(()=>{
+    if(token){
+      const details = async function(){
+        const details = await sendRequest('http://localhost:8000/api/my-profile/details', "GET", {Authorization: `Bearer ${token}`});
+        console.log(details);
+      } 
+      details()
+      setDetails(details)
+    }
+  },[token, sendRequest])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,7 +46,7 @@ const PersonalDetails = (props) => {
     <section>
       <Formik
       initialValues={{
-        firstName: "",
+        firstName: {details.firstName},
         lastName: "",
         email: "",
         password: "",
@@ -83,7 +97,7 @@ const PersonalDetails = (props) => {
               })}
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder={props.values.firstName}
               value={props.values.firstName}
               onChange={props.handleChange}
             />

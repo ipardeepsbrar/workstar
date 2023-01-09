@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { getActivity, getDetails } = require("../controllers/profile");
+const { getActivity, getDetails, setDetails } = require("../controllers/profile");
 
-router.route("/details/:userId").get(getDetails);
+router.route("/details").get(getDetails).post(setDetails);
 
 router.route("/activity/:userId").get(getActivity);
 
