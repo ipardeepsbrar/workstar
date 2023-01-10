@@ -25,8 +25,6 @@ const FindJobs = (props) => {
             Authorization: `Bearer ${token}`,
           }
         );
-        console.log('with token');
-        console.log(list);
         // BUG => sending correct list to setList function, but not rendering correctly on screen
         setList(list);
       }
@@ -38,8 +36,6 @@ const FindJobs = (props) => {
           "http://localhost:8000/api/all-jobs/");
         setList(list);
       }
-      console.log('without token');
-      console.log(list);
       requestList();
     }
   }, [token, sendRequest]);

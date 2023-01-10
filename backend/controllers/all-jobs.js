@@ -10,7 +10,6 @@ const getAllJobs = async (req, res, next) => {
 
 // to get all jobs out there except my own
 const getAllOtherJobs = async (req, res, next) => {
-  console.log('run');
   const allJobs = await Jobs.find().ne('openedBy' ,req.user.userId)
   res.status(200).json(allJobs);
 };

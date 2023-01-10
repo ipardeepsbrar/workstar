@@ -1,20 +1,42 @@
-import React, { useState } from "react";
-import { Form, Field, Formik } from "formik";
-import * as Yup from "yup";
-import ImagePicker from "./ImagePicker";
-import classNames from "classnames";
+import React, { useEffect, useState } from "react";
+// import { Form, Field, Formik } from "formik";
+// import * as Yup from "yup";
+import ImagePicker from "./FilePicker";
+// import classNames from "classnames";
 
 import classes from "./PersonalDetails.module.css";
 import useBackendRequester from "./shared/useBackendRequester";
-import { authActions } from "../store/authSlice";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { authActions } from "../store/authSlice";
+// import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+// import { sendRequest } from "./shared/useBackendRequester";
 
 const PersonalDetails = (props) => {
   const [edit, setEdit] = useState(false);
+  const [changePswd, setChangePswd] = useState(false);
   const { sendRequest } = useBackendRequester();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+  const [details, setDetails] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    if (token) {
+      const details = async function () {
+        const userDetails = await sendRequest(
+          "http://localhost:8000/api/my-profile/details",
+          "GET",
+          { Authorization: `Bearer ${token}` }
+        );
+        setDetails(userDetails);
+      };
+      details();
+    }
+  }, [token, sendRequest]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -28,13 +50,102 @@ const PersonalDetails = (props) => {
     setEdit(true);
   };
 
+  const changeHandler = (e) => {
+    details[e.target.name] = e.target.value;
+  };
+
+  const pswdHandler = (e) => {
+    e.preventDefault();
+    setChangePswd((prevState) => !prevState);
+  };
+
   return (
     <section>
-      <Formik
+      <ImagePicker profile="profile" />
+      <form className={classes.detailsForm} onSubmit={submitHandler}>
+        <div className={classes.inputDiv}>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            disabled={edit ? false : true}
+            value={details.firstName}
+            onChange={changeHandler}
+          />
+        </div>
+
+        <div className={classes.inputDiv}>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            disabled={edit ? false : true}
+            value={details.lastName}
+          />
+        </div>
+        <div className={classes.inputDiv}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            disabled
+            value={details.email}
+          />
+        </div>
+        {edit ? (
+          <button type="submit">Save</button>
+        ) : (
+          <button onClick={editHandler}>Edit</button>
+        )}
+      </form>
+
+      <form className={classes.detailsForm}>
+        {changePswd && (
+          <>
+            <div className={classes.inputDiv}>
+              <label htmlFor="cpswd">Current Password:</label>
+              <input
+                type="password"
+                id="cpswd"
+                name="cpassword"
+                disabled={edit ? false : true}
+              />
+            </div>
+
+            <div className={classes.inputDiv}>
+              <label htmlFor="npswd">New Password:</label>
+              <input
+                type="password"
+                id="npswd"
+                name="npassword"
+                disabled={edit ? false : true}
+                value=''
+              />
+            </div>
+          </>
+        )}
+        <div>
+          {changePswd ? <><button type="submit">Save</button><button type="button" onClick={pswdHandler}>Cancel</button></> :
+          <button type="button" onClick={pswdHandler}>
+            Change Password
+          </button>}
+        </div>
+      </form>
+    </section>
+  );
+};
+
+export default PersonalDetails;
+
+
+  /* <Formik
       initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
+        firstName: details.firstName,
+        lastName: details.lastName,
+        email: details.email,
         password: "",
       }}
       // validation schema
@@ -56,6 +167,7 @@ const PersonalDetails = (props) => {
       })}
       // submit handler
       onSubmit={async (values, actions) => {
+        console.log(details);
         const {firstName, lastName, password} = values
         const body = JSON.stringify({firstName, lastName, password});
         const data = await sendRequest(
@@ -68,7 +180,7 @@ const PersonalDetails = (props) => {
         // actions.resetForm();
       }}
     >
-      {/* FORM BEGINS HERE */}
+      // FORM BEGINS HERE 
 
       {(props) => (
         <Form className={classes.detailsForm}>
@@ -83,7 +195,7 @@ const PersonalDetails = (props) => {
               })}
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder={props.values.firstName}
               value={props.values.firstName}
               onChange={props.handleChange}
             />
@@ -164,53 +276,4 @@ const PersonalDetails = (props) => {
           </button>
         </Form>
       )}
-    </Formik>
-    </section>
-  );
-};
-
-export default PersonalDetails;
-
-{/* <form className={classes.detailsForm} onSubmit={submitHandler}>
-  <ImagePicker edit={edit}/>
-
-  <div className={classes.inputDiv}>
-    <label htmlFor="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" disabled={edit ? false : true} />
-  </div>
-
-  <div className={classes.inputDiv}>
-    <label htmlFor="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" disabled={edit ? false : true} />
-  </div>
-
-  <div className={classes.inputDiv}>
-    <label htmlFor="email">Email:</label>
-    <input type="text" id="email" name="email" disabled={edit ? false : true}/>
-  </div>
-
-  <div className={classes.inputDiv}>
-    <label htmlFor="pswd">Password:</label>
-    <input type="password" id="pswd" name="password" disabled={edit ? false : true}/>
-  </div>
-
-  <div className={classes.inputDiv}>
-    <label htmlFor="tel">Telephone:</label>
-    <input
-      type="tel"
-      id="tel"
-      name="phone"
-      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-      disabled={edit ? false : true}
-    />
-  </div>
-  <div className={classes.inputDiv}>
-    <label htmlFor="address">Address:</label>
-    <input type="text" id="address" name="address" disabled={edit ? false : true}/>
-  </div>
-  {edit ? (
-    <button type="submit">Save</button>
-  ) : (
-    <button onClick={editHandler}>Edit</button>
-  )}
-</form> */}
+    </Formik> */

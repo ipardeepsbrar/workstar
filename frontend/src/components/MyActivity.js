@@ -11,7 +11,7 @@ const MyActivity = (props) => {
     const location = useLocation().pathname;
     const token = useSelector((state) => state.auth.token);
     const [list, setList] = useState([]);
-    const {sendRequest, loading} = useBackendRequester();
+    const {sendRequest} = useBackendRequester();
     
   
     useEffect(()=>{
