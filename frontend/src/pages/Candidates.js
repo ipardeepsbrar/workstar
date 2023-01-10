@@ -1,5 +1,5 @@
 import React from "react"
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import EmptyElement from "../components/EmptyElement";
 import JobItem from "../components/JobItem";
 import Header from "../components/Header";
@@ -7,7 +7,7 @@ import CandidateList from "../components/CandidateList";
 
 const Candidates = (props) => {
     const location = useLocation().pathname
-    const jobId = useParams().jobId;
+    // const jobId = useParams().jobId;
     // fetch job from database with jobId
     // fetch candidates from database with help of jobId
       const candidates = [];

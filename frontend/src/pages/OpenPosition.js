@@ -1,6 +1,6 @@
 import { Field, Form, Formik, useField } from "formik";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import EmptyElement from "../components/EmptyElement";
 import Header from "../components/Header";
 import useBackendRequester from "../components/shared/useBackendRequester";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { alertActions } from "../store/alertSlice";
 
 const MyTextArea = ({label, ...props}) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
   return (
       <>
           <label htmlFor={props.id || props.name}>{label}</label>
@@ -23,7 +23,7 @@ const MyTextArea = ({label, ...props}) => {
 const OpenPosition = (props) => {
   const {sendRequest} = useBackendRequester();
   const token = useSelector((state) => state.auth.token);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (

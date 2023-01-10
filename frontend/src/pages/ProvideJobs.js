@@ -3,8 +3,7 @@ import {
   Link,
   Route,
   Routes,
-  useLocation,
-  useNavigate,
+  useLocation
 } from "react-router-dom";
 import EmptyElement from "../components/EmptyElement";
 import Header from "../components/Header";
@@ -12,8 +11,8 @@ import OpenPosition from "./OpenPosition";
 import OpenedJobList from "../components/OpenedJobList";
 
 import classes from "./css/ProvideJobs.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { alertActions } from "../store/alertSlice";
+import { useSelector } from "react-redux";
+// import { alertActions } from "../store/alertSlice";
 import useBackendRequester from "../components/shared/useBackendRequester";
 
 const ProvideJobs = (props) => {
@@ -22,7 +21,7 @@ const ProvideJobs = (props) => {
   // const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const [list, setList] = useState([]);
-  const {sendRequest, loading} = useBackendRequester();
+  const {sendRequest} = useBackendRequester();
   
 
   useEffect(()=>{

@@ -18,7 +18,14 @@
     justify-content: center;
 }
 
-.imageEditBtn{
+.imageEditInput{
+    /* display: flex;
+    justify-content: flex-end; */
+    display: none
+}
+
+.fileSectionBtn{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
