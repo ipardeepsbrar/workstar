@@ -3,9 +3,11 @@
     color: white;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 390px;
     z-index: 2;
+    /* margin: 0 auto */
+    translate: -50%
 }
 .container1{
     display: flex;
