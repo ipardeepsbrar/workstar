@@ -26,6 +26,7 @@ function App() {
   }, [])
 
   return (
+    <div className="wrapper">
     <BrowserRouter>
       <AlertDialog/>
       <Routes>
@@ -38,6 +39,7 @@ function App() {
         <Route path="/candidates/:jobId" element={<Candidates/>}/>
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 

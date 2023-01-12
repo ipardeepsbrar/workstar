@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -30,4 +31,11 @@ ul{
 a{
   text-decoration: none;
   color: black;
+}
+
+.wrapper{
+  max-width: 390px;
+  height: 844px;
+  margin: 0 auto;
+  border: 1px solid rgb(231, 229, 229);
 }

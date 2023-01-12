@@ -33,7 +33,7 @@ const LogInPage = (props) => {
         const body = JSON.stringify(values);
         try {
           const data = await sendRequest(
-            `http://52.91.124.129:8000/api/auth/login`,
+            `https://54.166.230.250:8000/api/auth/login`,
             "POST",
             { "Content-Type": "application/json" },
             body
