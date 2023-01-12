@@ -28,7 +28,7 @@ const PersonalDetails = (props) => {
     if (token) {
       const details = async function () {
         const userDetails = await sendRequest(
-          "http://localhost:8000/api/my-profile/details",
+          "http://52.91.124.129:8000/api/my-profile/details",
           "GET",
           { Authorization: `Bearer ${token}` }
         );

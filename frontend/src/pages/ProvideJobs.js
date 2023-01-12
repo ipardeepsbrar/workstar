@@ -27,7 +27,7 @@ const ProvideJobs = (props) => {
   useEffect(()=>{
     if(token){
       async function requestList() {
-          const list = await sendRequest('http://localhost:8000/api/provide-jobs/opened-positions', "GET",
+          const list = await sendRequest('http://52.91.124.129:8000/api/provide-jobs/opened-positions', "GET",
           { "Content-Type": "application/json", Authorization: `Bearer ${token}`})
           setList(list);
         }

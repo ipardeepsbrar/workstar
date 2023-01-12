@@ -1,4 +1,7 @@
 const express = require("express");
+const https = require('https');
+const path = require('path');
+const fs = require('fs');
 const mongoose = require("mongoose");
 require("dotenv").config();
 require('express-async-errors');
@@ -57,11 +60,18 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 8000;
+
+const sslServer = https.createServer({
+  key: '',
+  cert: ''
+}, app);
+
 const connect = async () => {
   try {
     mongoose.set("strictQuery", false);
     await mongoose.connect(process.env.MONGO_URI);
-    await app.listen(port);
+    // await app.listen(port);
+    await sslServer.listen(port);
     console.log("DB connected and server listening...");
   } catch (error) {
     console.log("DB ERROR or SERVER LISTENING ERROR...");
