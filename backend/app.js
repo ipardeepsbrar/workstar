@@ -62,8 +62,8 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 8000;
 
 const sslServer = https.createServer({
-  key: '',
-  cert: ''
+  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
 }, app);
 
 const connect = async () => {
