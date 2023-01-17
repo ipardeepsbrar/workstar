@@ -48,7 +48,7 @@ const OpenPosition = (props) => {
         const body = JSON.stringify(values);
         try {
           const successMsg = await sendRequest(
-            `https://54.166.230.250:8000/api/provide-jobs/opened-positions/open-position`,
+            `https://ipardeepsbrar.com/api/provide-jobs/opened-positions/open-position`,
             "PUT",
             { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
             body

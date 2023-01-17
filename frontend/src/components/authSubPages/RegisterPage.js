@@ -43,7 +43,7 @@ const RegisterPage = (props) => {
       onSubmit={async (values, actions) => {
         const body = JSON.stringify(values);
         const data = await sendRequest(
-          `https://54.166.230.250:8000/api/auth/register`,
+          `https://ipardeepsbrar.com/api/auth/register`,
           "PUT",
           { "Content-Type": "application/json" },
           body

@@ -19,7 +19,7 @@ const FindJobs = (props) => {
     if (token) {
       async function requestList() {
         const list = await sendRequest(
-          'https://54.166.230.250:8000/api/all-jobs/user',
+          'https://ipardeepsbrar.com/api/all-jobs/user',
           "GET",
           {
             Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ const FindJobs = (props) => {
     else {
       async function requestList() {
         const list = await sendRequest(
-          "https://54.166.230.250:8000/api/all-jobs/");
+          "https://ipardeepsbrar.com/api/all-jobs/");
         setList(list);
       }
       requestList();

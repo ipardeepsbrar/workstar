@@ -33,7 +33,7 @@ const LogInPage = (props) => {
         const body = JSON.stringify(values);
         try {
           const data = await sendRequest(
-            `https://54.166.230.250:8000/api/auth/login`,
+            `https://ipardeepsbrar.com/api/auth/login`,
             "POST",
             { "Content-Type": "application/json" },
             body
